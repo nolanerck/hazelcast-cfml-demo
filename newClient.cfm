@@ -8,9 +8,7 @@
 	config.setProperty( STATISTICS_ENABLED.getName(), "true" );
 	config.setProperty( HAZELCAST_CLOUD_DISCOVERY_TOKEN.getName(), 
 						"Vvc74IMTjUThdDzpo9A0KlYmpjUiJ8ixBDmgoYIVOHU5cEdQPK" );
-
-	config.setClusterName("pr-2904"); // this method cannot be found
-
-	config.setInstanceName( "pr-2904" );
+	config.setClusterName( "pr-2904" ); 
+	
 	objHazelcastClient.newHazelcastClient( config );
 </cfscript>

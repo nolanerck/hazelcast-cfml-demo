@@ -1,6 +1,6 @@
 <cfscript>
 
-    application.hazelcastClient.shutdown();
+    application.hz1.shutdown();
 
     writeoutput( "Hazelcast has stopped." );
 

@@ -2,7 +2,7 @@
 
     helloWorldConfig = createObject( "java", "com.hazelcast.config.Config" ).init();
     hazelcast = createObject( "java", "com.hazelcast.core.Hazelcast" );
-    objSqlStatement = createObject( "java", "com.hazelcast.sql.SqlStatement" ).init( "CREATE MAPPING myDistributedMap TYPE IMap OPTIONS ('keyFormat'='varchar','valueFormat'='varchar')" );
+    objSqlStatement = createObject( "java", "com.hazelcast.sql.SqlStatement" ).init( "CREATE OR REPLACE MAPPING myDistributedMap TYPE IMap OPTIONS ('keyFormat'='varchar','valueFormat'='varchar')" );
 
     helloWorldConfig.setClusterName( "hello-world" );
 
@@ -14,7 +14,6 @@
     sql = hz.getSql();
 
     createMappingQuery = objSqlStatement;
-
     sql.execute( createMappingQuery );
 
     sql.execute( objSqlStatement.setSql( "SINK INTO myDistributedMap VALUES('1', 'John')" ) );
@@ -29,7 +28,6 @@
     while( it.hasNext() )
     {
         item = it.next();
-        
         writeoutput( item.getObject( 1 ) );
     }
 

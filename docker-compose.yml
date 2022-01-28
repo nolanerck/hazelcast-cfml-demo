@@ -1,0 +1,23 @@
+version: '3'
+services:
+
+  database_hazelcastdemo:
+      image: 'mysql:5.7.12'
+      command: mysqld --sql_mode=""
+      ports:
+        - '3306:3306'
+      environment:
+        - MYSQL_ROOT_PASSWORD=mypassword123
+        - MYSQL_DATABASE=vandelayindustries
+      volumes:
+        - '.mysql:/var/lib/mysql' #Where all the databse tables are etc
+        - './_db:/docker-entrypoint-initdb.d' #where we load the default data from
+        # - './mysql:/etc/mysql' #where we load our configurations from 
+  
+
+# networks:
+#   default:
+#     ipam:
+#       driver: default
+#       config:
+#         - subnet: 172.18.19.0/24                

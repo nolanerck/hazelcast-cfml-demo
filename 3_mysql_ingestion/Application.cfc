@@ -16,7 +16,9 @@ component
       , liveTimeout:60 // default: -1; unit: minutes
       , alwaysSetTimeout:true // default: false
       , validate:false // default: false
-  };    
+    };
+
+    this.defaultdatasource="vandelay-dsn";
 
     public any function onApplicationStart()
     {

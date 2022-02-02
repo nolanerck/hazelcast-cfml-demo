@@ -17,8 +17,19 @@
     Statement = CreateObject( "java", "java.sql.Statement" );
 
 
-    MAP_NAME = "userMap";
+    MAP_NAME   = "userMap";
     TABLE_NAME = "tCustomers";
+
+    // funct = createobject( "java", "com.hazelcast.function.FunctionEx" );
+    // dump( funct );
+
+    // abort;
+    // funct.compose(  );
+
+    // dump( funct );
+    // abort;
+
+
 
     // private static Pipeline buildPipeline(String connectionUrl) {
     //     Pipeline p = Pipeline.create();
@@ -31,15 +42,47 @@
     //     return p;
     // }
 
+    buildPipeline( connectionUrl() );
+
+
+    doresults = (resultSet) => "Hello, #resultSet#.";
+
     any function buildPipeline( String connectionUrl )
     {
+       dump( Sources );
+       // abort;
+
         var p = Pipeline.create();
 
-         p.readFrom(Sources.jdbc( arguments.connectionUrl,
-                     "SELECT * FROM " + TABLE_NAME,
-                     resultSet -> new User(resultSet.getInt(1), resultSet.getString(2))))
-          .map(user => Util.entry(user.getId(), user))
-          .writeTo(Sinks.map(MAP_NAME));
+        dump( p );
+        // abort;
+
+
+        // var rslt = Sources.jdbc( arguments.connectionUrl, "SELECT * FROM #TABLE_NAME#", nullValue() );
+
+        // var rslt = Sources.jdbc( arguments.connectionUrl, "SELECT * FROM #TABLE_NAME#", (resultSet) => "Hello, #resultSet#." );
+        var rslt = queryExecute( "SELECT * FROM #TABLE_NAME#" );
+
+dump( rslt );
+
+        dump( rslt.toJson() );
+
+        var jsonrslt = Sources.json( rslt.toJson() );
+
+        dump( jsonrslt.toString() );
+
+        abort;
+
+
+
+        //  var rslt = p.readFrom( Sources.jdbc( arguments.connectionUrl,
+        //              "SELECT * FROM " + TABLE_NAME ) );
+
+        dump( rslt );
+        abort;
+                     // resultSet => new User(resultSet.getInt(1), resultSet.getString(2))));
+        //   .map(user => Util.entry(user.getId(), user))
+        //   .writeTo(Sinks.map(MAP_NAME));
         return p;
     }
 

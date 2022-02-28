@@ -13,7 +13,6 @@
     result = sql.execute( objSqlStatement.setSql( "SELECT * FROM myDistributedMap" ) );
 </cfscript>
 
-
 <cfset it = result.iterator() />
 <cfoutput>
     <h1>The Beatles</h1>

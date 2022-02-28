@@ -49,24 +49,27 @@
 
     any function buildPipeline( String connectionUrl )
     {
-       dump( Sources );
-       // abort;
+       // dump( Sources );
+        // abort;
 
         var p = Pipeline.create();
 
-        dump( p );
+        // dump( p );
         // abort;
 
 
         // var rslt = Sources.jdbc( arguments.connectionUrl, "SELECT * FROM #TABLE_NAME#", nullValue() );
 
-        // var rslt = Sources.jdbc( arguments.connectionUrl, "SELECT * FROM #TABLE_NAME#", (resultSet) => "Hello, #resultSet#." );
-        var rslt = queryExecute( "SELECT * FROM #TABLE_NAME#" );
+        var rslt = Sources.jdbc( arguments.connectionUrl, "SELECT * FROM #TABLE_NAME#", nullValue() );
+        // var rslt = queryExecute( "SELECT * FROM #TABLE_NAME#" );
 
 dump( rslt );
+abort;
 
         dump( rslt.toJson() );
+        dump( serialize( rslt ) );
 
+abort;
         var jsonrslt = Sources.json( rslt.toJson() );
 
         dump( jsonrslt.toString() );

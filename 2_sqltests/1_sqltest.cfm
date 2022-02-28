@@ -13,6 +13,9 @@
 
     sql = hz.getSql();
 
+    dump( sql );
+    abort;
+
     createMappingQuery = objSqlStatement;
     sql.execute( createMappingQuery );
 
